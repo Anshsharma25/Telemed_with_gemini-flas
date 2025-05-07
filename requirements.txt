@@ -1,0 +1,9 @@
+crewai
+groq 
+langchain 
+fastapi 
+pydantic 
+reportlab
+
+langchain-google-genai
+google-generativeai
