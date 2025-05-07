@@ -1,4 +1,3 @@
-# main.py
 from dotenv import load_dotenv
 from crewai import Task, Crew
 from llm.llm import llm
@@ -9,13 +8,11 @@ from agents.report_agent import report_agent
 
 load_dotenv()
 
-# Tasks (unchanged) …
-symptom_task = Task(agent=symptom_agent, description="Extract and format symptoms from user input", expected_output="Structured JSON…")
-followup_task = Task(agent=followup_agent, description="Ask follow-up questions based on symptoms", expected_output="Relevant follow-up questions")
-diagnosis_task = Task(agent=diagnosis_agent, description="Suggest possible medical conditions", expected_output="List of potential diagnoses with probability scores")
-report_task    = Task(agent=report_agent,    description="Generate a summary report for doctors", expected_output="Formatted medical report summarizing all information")
+symptom_task   = Task(agent=symptom_agent,   description="Extract and format symptoms from user input", expected_output="Structured JSON…")
+followup_task  = Task(agent=followup_agent,  description="Ask follow-up questions based on symptoms",       expected_output="Relevant follow-up questions")
+diagnosis_task = Task(agent=diagnosis_agent, description="Suggest possible medical conditions",            expected_output="List of potential diagnoses with probability scores")
+report_task    = Task(agent=report_agent,    description="Generate a summary report for doctors",         expected_output="Formatted medical report summarizing all information")
 
-# **Tell Crew to use your Gemini LLM**—no Litellm/OpenAI anywhere:
 crew = Crew(
     agents=[symptom_agent, followup_agent, diagnosis_agent, report_agent],
     tasks=[symptom_task, followup_task, diagnosis_task, report_task],
